@@ -7,8 +7,8 @@ public class Main {
         Terrorist terrorist = new Terrorist();
         // Tao lai object
         Terrorist terrorist1 = new Terrorist("String", 2d, 3d);
-
+        //Terrorist("String", 2d, 3d)
         System.out.println(terrorist.tostring());
-        System.out.println(terrorist1);
+        System.out.println(terrorist1.tostring());
     }
 }
