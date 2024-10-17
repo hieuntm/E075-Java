@@ -17,4 +17,16 @@ public class Mage {
     public void setMana(int mana) {
         this.mana = mana > 100 && mana < 200 ? mana : 0;
     }
+
+    @Override
+    public String toString() {
+        return "Mage{" +
+                "hp=" + hp +
+                ", mana=" + mana +
+                '}';
+    }
+
+    void display(){
+        System.out.println(this);
+    }
 }
