@@ -1,0 +1,7 @@
+public class Cat extends Dog implements Flyable, TestInteface
+
+public abstract class Cat
+
+public interface Cat
+
+public private default protected => có cũng được

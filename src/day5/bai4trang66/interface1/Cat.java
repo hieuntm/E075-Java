@@ -1,6 +1,6 @@
 package day5.bai4trang66.interface1;
 
-public class Cat implements Flyable, TestInteface{
+public class Cat extends Dog implements Flyable, TestInteface{
 
 
     @Override
