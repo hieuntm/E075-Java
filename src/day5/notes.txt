@@ -1,0 +1,12 @@
+1. Abstract class không tạo được object
+2. Abstract function phải được khai báo trong abstract class
+3. Abstract function không có body
+4. Class con kế thừa abstract class phải implement (ghi đè) lại abstract function của cha
+5. Class con không cần implement lại tất cả các non-abstract function của cha
+6. Class con chỉ được kế thừa từ 1 abstract class
+
+1. Interface ko thể tạo object
+2. Interface chỉ chứa abstract method
+3. Interface không chứa non-abstract method
+4. Class con kế thừa interface phải implement (ghi đè) lại tất cả các abstract method của interface
+5. Class con có thể implement nhiều interface
