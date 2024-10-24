@@ -1,0 +1,18 @@
+public static void main(String[] args) {
+        String customPattern = "^(SS|SM|NK|MT)\\d{4}$";
+        Pattern pattern = Pattern.compile(customPattern);
+
+        String[] testStrings = {
+            "SM6610",
+            "MT7130",
+            "SS1234",
+            "NK5678",
+            "AB1234",  // Invalid
+            "SM12A4",  // Invalid
+            "MT123"    // Invalid
+        };
+
+        for (String testString : testStrings) {
+            Matcher matcher = pattern.matcher(testString);
+            System.out.println("String: " + testString + " is valid: " + matcher.matches());
+        }
