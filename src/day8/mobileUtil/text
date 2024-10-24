@@ -1,18 +1,21 @@
-public static void main(String[] args) {
+
+    String id = sc.next();
+    // String id = inputString("ABCCC");
+
+    if(isId(id)){
+        System.out.println("Valid ID");
+     } else {
+        System.out.println("Invalid ID");
+     }
+
+    boolean isId(String value){
         String customPattern = "^(SS|SM|NK|MT)\\d{4}$";
-        Pattern pattern = Pattern.compile(customPattern);
+            Pattern pattern = Pattern.compile(customPattern);
+            Matcher matcher = Pattern.matcher(value);
+            return matcher.find();
+            }
 
-        String[] testStrings = {
-            "SM6610",
-            "MT7130",
-            "SS1234",
-            "NK5678",
-            "AB1234",  // Invalid
-            "SM12A4",  // Invalid
-            "MT123"    // Invalid
-        };
-
-        for (String testString : testStrings) {
-            Matcher matcher = pattern.matcher(testString);
-            System.out.println("String: " + testString + " is valid: " + matcher.matches());
-        }
+            boolean isId(String value){
+                    String customPattern = "^(SS|SM|NK|MT)\\d{4}$";
+                       return Pattern.matches(customPattern, value);
+                        }
