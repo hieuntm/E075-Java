@@ -9,7 +9,7 @@
      }
 
     boolean isId(String value){
-        String customPattern = "^(SS|SM|NK|MT)\\d{4}$";
+        String customPattern = "^(SS|SM|NK|MT)[0-9]{4}$";
             Pattern pattern = Pattern.compile(customPattern);
             Matcher matcher = Pattern.matcher(value);
             return matcher.find();
