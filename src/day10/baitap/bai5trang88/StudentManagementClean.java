@@ -13,7 +13,7 @@ public class StudentManagementClean {
     public StudentManagementClean() {
         map = new HashMap<>();
         importFromFile();
-        exportStream();
+        exportObject();
     }
 
     public int getSize() {
@@ -21,6 +21,19 @@ public class StudentManagementClean {
     }
 
     public void add(Student student) {
+    }
+
+    public void exportObject() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(STORE_FILE_STREAM))) {
+            for (Student student : map.values()) { // Loop, viết từng thằng ra file 1
+                oos.writeObject(student);
+            }
+        } catch (IOException ex) {
+            // Xảy ra trong trường hợp
+            // 1. Ko có file
+            // 2. File ko có permits
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void exportStream() {
