@@ -6,11 +6,14 @@ import java.util.HashMap;
 public class StudentManagementClean {
 
     private final String STORE_FILE = "/Users/hieuntm/Documents/Java/working/GreenAcademy/src/day10/baitap/bai5trang88/data/student.txt";
+    private final String STORE_FILE_STREAM = "/Users/hieuntm/Documents/Java/working/GreenAcademy/src/day10/baitap/bai5trang88/data/student_stream.dat";
+
     private final HashMap<String, Student> map;
 
     public StudentManagementClean() {
         map = new HashMap<>();
         importFromFile();
+        exportStream();
     }
 
     public int getSize() {
@@ -18,6 +21,21 @@ public class StudentManagementClean {
     }
 
     public void add(Student student) {
+    }
+
+    public void exportStream() {
+        try (BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(STORE_FILE_STREAM))) {
+            String itemOut = "ID,Name,Address,Phone Number\n";
+            bos.write(itemOut.getBytes()); // Header, title
+            for (Student student : map.values()) { // Loop, viết từng thằng ra file 1
+                bos.write(student.toFileByte());
+            }
+        } catch (IOException ex) {
+            // Xảy ra trong trường hợp
+            // 1. Ko có file
+            // 2. File ko có permits
+            System.out.println(ex.getMessage());
+        }
     }
 
     public void export() {

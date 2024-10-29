@@ -4,7 +4,10 @@ import java.io.Serializable;
 
 // Check là ghi được ra binary file
 public class Student implements Serializable {
-    private String id, name, address,phoneNumber;
+
+    public static final long serialVersionUID = 1L;
+
+    private String id, name, address, phoneNumber;
 
     public Student() {
     }
@@ -58,7 +61,12 @@ public class Student implements Serializable {
                 '}';
     }
 
-    public String toFile(){
+    public String toFile() {
         return id + "," + name + "," + address + "," + phoneNumber + "\n";
+    }
+
+    public byte[] toFileByte() {
+        String dataOut = id + "," + name + "," + address + "," + phoneNumber + "\n";
+        return dataOut.getBytes();
     }
 }
