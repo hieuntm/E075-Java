@@ -1,0 +1,61 @@
+1 công ty có nhiều công trình -> 1-n
+1 nhân viên, được quản lý bởi 1 phòng -> 1-1
+1 phòng ban quản lý nhiều nhân viên, có nhiều phòng ban  -> 1-n
+1 công trình được phân cho nhiều nhân viên -> 1-n
+1 nhân viên có thể làm nhiều công trình -> 1-n
+-> 1 nhiều, 1 nhiều và đảo thực thể, thì là quan hệ n-n
+- Đối với quan hệ nhiều nhiều, luôn sinh ra 1 bảng con
+- chứa 2 khoá phụ của 2 bảng chính
+
+Bảng công trình -> Mỗi một record là 1 công trình
+MACT
+TENCT
+DIADIEM
+NGAYCAPGP
+NGAYKC
+NGAYHT
+
+Bảng nhân viên -- Mỗi 1 record là 1 nhân viên
+MANV
+HOTEN
+NGAYSINH
+GIOITINH
+DIACHI
+MAPB -- Từ bảng phòng ban -> Khoá phụ -> Khoá ngoại
+
+# Giả sử
+- Nhân viên A, có Mã PB là PB1
+- Nhân viên B, Có mã PB là PB1
+- Nhân viên C, có mã PB là PB2
+
+Bảng phòng ban -> Mỗi 1 record là 1 phòng ban
+MAPB
+TENPB
+
+#MANV
+#-- Gia sử data: PB1, Phòng ban1, NV1
+#--                      PB1, Phòng ban1, NV2
+
+-- Bảng phụ sinh ra
+BẢNG tính công
+MANV
+MACT
+SLNGAYCONG
+------------
+MANV, MACT, SLNGAYCONG
+- 1             1               20
+- 1             2               30
+- 1             3               25
+- 2             1               15
+- 2             2               20
+- 2             3               30
+
+-- đối với 1-1, thì các bạn cứ đính kèm khoá phụ vào bảng chính
+-- đối với 1-n, thì các bạn cứ đính kèm khoá ngoại vào bảng chính
+-- đối với n-n, thì các bạn cần tạo bảng phụ, chứa 2 khoá phụ của 2 bảng chính
+
+=> 4 bảng
+-> Sinh ra 4 class Java
+-> 4 class java, bắt đầu thiết kế, các class Management, để thể sự liên quan
+giữa các thực thể -> thông quan crud
+-- thêm bớt sửa xoá
