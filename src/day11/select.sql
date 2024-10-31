@@ -172,3 +172,5 @@ SELECT * FROM STUDENT
 -- Dùng câu lệnh drop
 DROP DATABASE ABC;
 DROP TABLE LAPTOP;
+
+-- Thao tác với dữ liệu trong bảng

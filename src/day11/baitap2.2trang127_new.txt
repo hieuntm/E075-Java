@@ -1,0 +1,54 @@
+-- Bảng Sách: MASH, TENSACH, TENTACGIA, NHAXB, NAMXB
+-- Bảng Độc Giả: MADG, HOTEN, NGAYSINH, DIACHI, NGHENGHIEP
+-- Bảng Thuê sách: MATHUE, NGAYMUON, NGAYTRA, MADG, MASH
+
+-- Thao tác với bảng, ràng buộc (constraint)
+
+-- Nếu là mã (id) trường định danh cho bản ghi
+-- mặc định thêm primary key (khoá chính), auto_increment, not null
+-- Tên cột nên để để snake_case Snake_Case or SNAKE_CASE
+CREATE TABLE SACH(
+MASH int primary key auto_increment,
+TEN_SACH varchar(255),
+TEN_TAC_GIA varchar(255),
+NHA_XB varchar(255),
+NAM_XB int
+);
+
+
+-- Bảng Độc Giả: MADG, HOTEN, NGAYSINH, DIACHI, NGHENGHIEP
+CREATE TABLE DOC_GIA(
+MADG int primary key auto_increment,
+HO_TEN varchar(255),
+NGAY_SINH datetime,
+DIA_CHI varchar(255),
+NGHE_NGHIEP varchar(255)
+);
+
+-- Bảng Thuê sách: MATHUE, NGAYMUON, NGAYTRA, MADG, MASH
+CREATE TABLE PHIEU_MUON(
+MATHUE int primary key auto_increment,
+NGAY_MUON datetime,
+MADG int not null,
+constraint FK_MAGD_constraints -- đặt tên cho constrants
+FOREIGN KEY (MADG) REFERENCES DOC_GIA(MADG)
+);
+
+CREATE TABLE REF_PHIEU_MUON_SACH(
+MASH int not null,
+MATHUE int,
+NGAY_TRA datetime,
+constraint FK_MASH_constraints
+FOREIGN KEY (MASH) REFERENCES SACH(MASH),
+constraint FK_MATHUE_constraints
+FOREIGN KEY (MATHUE) REFERENCES PHIEU_MUON(MATHUE)
+)
+
+-- Muốn xem quan hệ bảng như nào
+-- Chọn database -> reverse engineer
+
+-- Drop theo thứ tự bảng nào constraints thì drop trước
+DROP TABLE REF_PHIEU_MUON_SACH;
+DROP TABLE PHIEU_MUON;
+DROP TABLE SACH;
+DROP TABLE DOC_GIA;
