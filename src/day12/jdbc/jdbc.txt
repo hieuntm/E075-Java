@@ -1,0 +1,35 @@
+JDBC - > Java Database Connectivity
+-- Hoạt động kết tới tới Database từ Java
+
+** Các bước để chạy workbench -> Thao tác với UI
+-- B1. Tạo connection tới database
+--       Nhập địa chỉ IP: localhost:3306
+--       Nhập username: root
+--       Nhập password: root
+
+-- B2. Tạo database, sử dụng database và thêm table
+-- B3. Thêm dữ liệu vào table
+-- B4. Query, lấy dữ liệu.
+--       Viết query SELECT * FROM table_name
+--       Bấm run
+--        Trả về dữ liệu dạng bảng
+
+=> Đối với JDBC -> Các bạn không cần phải tạo bảng
+-- Việc tạo bảng, mình làm từ trước
+-- Có thể tạo, hoặc thêm, nhưng mà optional, ko làm trong phần này
+
+-> Phần JDBC:
+-- B1. Tạo connection tới database -> Class tên là Connection
+--       Nhập địa chỉ IP/URL: localhost:3306/ 127.0.0.1
+--       Nhập username: root/ 3306
+--       Nhập password: root/ 3306
+-> URL mặc định: jdbc:mysql://localhost:3306 -> chỉ thay đổi localhost:3306
+-- đằng trước phải có jdbc:mysql -> tuỳ vào database nó quyết định là mysql hay odbc
+-- B2. Query, lấy dữ liệu.
+--       Có 1 class: Để viết query - String
+--       Có 1 class: để chạy - Statement/ PreparedStatement
+--       Có 1 class để hứng data ResultSet
+
+-- Trong JDK 17, support hết rồi
+-- Nếu chưa support thì cần phải tải 1 thư viện ngoài
+-- mysql-j-conntector-java-8.0.26.jar

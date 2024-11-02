@@ -1,0 +1,6 @@
+-- Hướng dẫn thêm JDBC vào project JAva
+-- B1: Bấm vào 3 chấm ở góc phải
+-- B2: Chọn Project Structure
+-- B3: Chọn Libraries/ Global Libraries (Nên Libraries)
+-- B4: Chọn vào dấu + xanh -> Chọn Java -> trỏ tới file jar
+-- B5: Apply, OK
