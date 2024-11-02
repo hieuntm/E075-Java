@@ -38,4 +38,13 @@ public class Diem {
     public void setDiem(float diem) {
         this.diem = diem;
     }
+
+    @Override
+    public String toString() {
+        return "Diem{" +
+                "mssv='" + mssv + '\'' +
+                ", maMh='" + maMh + '\'' +
+                ", diem=" + diem +
+                '}';
+    }
 }

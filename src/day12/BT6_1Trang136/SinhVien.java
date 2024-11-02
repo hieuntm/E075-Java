@@ -17,6 +17,15 @@ public class SinhVien {
     public SinhVien() {
     }
 
+    public SinhVien(String mssv, String hoTen, Date ngaySinh, String diaChi, String maLop, String gioiTinh) {
+        this.mssv = mssv;
+        this.hoTen = hoTen;
+        this.ngaySinh = ngaySinh;
+        this.diaChi = diaChi;
+        this.maLop = maLop;
+        this.gioiTinh = gioiTinh;
+    }
+
     public String getMssv() {
         return mssv;
     }
@@ -63,5 +72,17 @@ public class SinhVien {
 
     public void setGioiTinh(String gioiTinh) {
         this.gioiTinh = gioiTinh;
+    }
+
+    @Override
+    public String toString() {
+        return "SinhVien{" +
+                "mssv='" + mssv + '\'' +
+                ", hoTen='" + hoTen + '\'' +
+                ", ngaySinh=" + ngaySinh +
+                ", diaChi='" + diaChi + '\'' +
+                ", maLop='" + maLop + '\'' +
+                ", gioiTinh='" + gioiTinh + '\'' +
+                '}';
     }
 }

@@ -11,6 +11,8 @@ public class Lop {
         this.maLop = maLop;
         this.tenLop = tenLop;
         this.siSo = siSo;
+        // Nó phải tính năng thêm sinh viên vào lớp
+        // Xoá sinh viên khỏi lớp
     }
 
     public String getMaLop() {
@@ -35,5 +37,14 @@ public class Lop {
 
     public void setSiSo(int siSo) {
         this.siSo = siSo;
+    }
+
+    @Override
+    public String toString() {
+        return "Lop{" +
+                "maLop='" + maLop + '\'' +
+                ", tenLop='" + tenLop + '\'' +
+                ", siSo=" + siSo +
+                '}';
     }
 }
