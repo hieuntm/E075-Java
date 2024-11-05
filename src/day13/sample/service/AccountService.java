@@ -19,10 +19,11 @@ public class AccountService {
             ps.setString(1, "admin1");
             ps.setString(2, "admin1");
 
-            ps.executeUpdate();
+            ps.executeUpdate(); // Trả về row affected
 
             try (ResultSet rs = ps.getGeneratedKeys()) { // trả về key generated
                 if (rs.next()) {
+                    // Lấy id từ accounts vừa insert rs.getInt(1) -> insert thêm 1 records vào bảng customer nữa
                     System.out.println(rs.getInt(1));
                 }
             }
