@@ -8,6 +8,13 @@ import java.util.List;
 
 public class ProductLineService {
 
+    // getAll
+    // getById
+    // insert
+    // delete
+    // update
+
+
     private final MyConnection myConnection;
 
     public ProductLineService() {

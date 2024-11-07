@@ -1,6 +1,7 @@
 package day14.sample.service;
 
 import day14.sample.db.MyConnection;
+import day14.sample.model.Account;
 import day14.sample.utils.InputUtils;
 
 import java.sql.*;
@@ -18,8 +19,8 @@ public class AccountService {
     }
 
     // Function chính, main của account, quản lý toàn bộ logic liên quan đến account
-    public boolean accountFunction(){
-        boolean isLogged = false;
+    public Account accountFunction() {
+        Account isLogged = null;
         // Quan tâm đến việc đăng nhập -> đúng sai
         // Đăng ký xong thì lại bắt lại cái menu
         int chon;
@@ -44,18 +45,18 @@ public class AccountService {
                     System.out.println("Đăng nhập: ");
                     String inputAccount = InputUtils.inputString("Xin mời nhập account:");
                     String inputPassword = InputUtils.inputString("Xin mời nhập password:");
-                    isLogged = login(inputAccount, inputPassword);
+                    isLogged = login(inputAccount, inputPassword); //isLogged = account
                     // Đúng là đăng nhập thành công
                     // Sai là fail do mật khẩu, tài khoản
-                    if (!isLogged) {
+                    if (isLogged == null) {
                         System.out.println("Đăng nhập thất bại");
                         break;
                     }
                     System.out.println("Đăng nhập thành công");
-                    return true;
+                    // phải return về thoát khỏi do while
+                    return isLogged;
                 default:
                     System.out.println("---------Thoát chương trình--------");
-                    return false;
             }
         } while (chon != LIMIT_MENU_ACCOUNT);
 
@@ -89,8 +90,7 @@ public class AccountService {
         }
     }
 
-    public boolean login(String username, String password) {
-        System.out.println(username.length() + "" + password.length());
+    public Account login(String username, String password) {
         // Kiểm tra username và password nó có cùng tồn tại trong database hay không
         // Nếu có thì trả về true, không thì trả về false
         // Select -> Lấy dữ liệu từ database
@@ -108,14 +108,18 @@ public class AccountService {
             // if (resultSet.next()) -> trả về 1 bản ghi duy nhất (select 1)
             // while (resultSet.next()) -> trả về nhiều bản ghi (select nhiều)
             if (resultSet != null && resultSet.next()) { // Kiểm tra xem có dữ liệu về hay không
-                return true;
+                int id = resultSet.getInt("id");
+                String usernameDB = resultSet.getString("username");
+                String role = resultSet.getString("role");
+
+                return new Account(id, usernameDB, role);
             }
         } catch (SQLException ex) {
             System.out.println("Error: " + ex.getMessage());
         } finally {
             myConnection.closeResultSet(resultSet, "login");
         }
-        return false; // Đăng nhập fail
+        return null; // Đăng nhập fail
     }
 
 }

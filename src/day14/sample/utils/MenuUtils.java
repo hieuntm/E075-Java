@@ -15,6 +15,7 @@ public class MenuUtils {
     // nên là nếu mà thuộc về object thì phải khởi tạo new
     // chúng ta có truy cập trực tiếp từ mọi nơi, với điều kiện là public
     public static void productMenu(){
+        String role = "admin";
         System.out.println("1. Hiển thị danh sách sản phẩm");
         System.out.println("2. Thêm sản phẩm");
         System.out.println("3. Xóa sản phẩm");
@@ -22,6 +23,12 @@ public class MenuUtils {
         System.out.println("5. Tìm kiếm sản phẩm theo ID");
         System.out.println("6. Thêm sản phẩm vào giỏ hàng");
         System.out.println("7. Thoát");
+
+        String roleUser = "user";
+        System.out.println("1. Hiển thị danh sách sản phẩm");
+        System.out.println("2. Tìm kiếm sản phẩm theo ID");
+        System.out.println("3. Thêm sản phẩm vào giỏ hàng");
+        System.out.println("4. Thoát");
     }
 
     public static void displayProductHeader() {
