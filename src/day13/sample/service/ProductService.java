@@ -119,17 +119,17 @@ public class ProductService {
     // Tất cả luôn
 
     public void insertProduct(Product product) {
-        if(product == null){
+        if (product == null) {
             System.out.println("Product is null, can not be inserted");
             return;
         }
 
         String query = """
-                                INSERT INTO products (productCode, productName, productLine, 
-                                  productScale, productVendor, productDescription, 
-                                  quantityInStock, buyPrice, MSRP)
-                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
-                                """;
+                INSERT INTO products (productCode, productName, productLine, 
+                  productScale, productVendor, productDescription, 
+                  quantityInStock, buyPrice, MSRP)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
+                """;
         // Liệt kê toàn bộ fields
         try (Connection connection = myConnection.connect();
              PreparedStatement ps = connection.prepareStatement(query)) {
@@ -145,7 +145,13 @@ public class ProductService {
             ps.setDouble(9, product.getMSRP());
             // Nó put các giá trị vào trong query theo dấu ? tương đương
 
-            int row = ps.executeUpdate(); // insert
+            int row = ps.executeUpdate();
+
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                System.out.println(rs.getInt(1));
+            }
+//            ps.executeQuery();
             // Insert xong nó trả ra number of row affected
             // trả 1 số nguyên
 
@@ -158,7 +164,7 @@ public class ProductService {
             // Truyền productCode = -- ; DROP TABLE products; --
             // dấu -- có comment cái phần sau, ; kết thúc query -> xoá bảng
             // 3. Hiệu năng
-            System.out.println(product.getProductCode() + " - Row affected: " + row);
+            System.out.println(" - Row affected: " + row);
         } catch (SQLException ex) {
             System.out.println("Error: " + ex.getMessage());
         }
@@ -171,9 +177,9 @@ public class ProductService {
         // Có thì xoá,
         // không thì báo là ko tồn tại
         String query = """
-                                DELETE FROM products
-                                WHERE productCode = ?;
-                                """;
+                DELETE FROM products
+                WHERE productCode = ?;
+                """;
         try (Connection connection = myConnection.connect();
              PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setString(1, productCode);
