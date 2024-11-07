@@ -60,8 +60,7 @@ public class Product {
         return MSRP;
     }
 
-    @Override
-    public String toString() {
-        return this.productCode + " - " + this.productName + " - " + this.productLine + " - " + this.productScale + " - " + this.productVendor +  " - " + this.quantityInStock + " - " + this.buyPrice + " - " + this.MSRP + "\n";
+    public void toDisplay() {
+        System.out.printf("%20s%50s%20s%12s%30s%10d%13.2f\n", this.productCode, this.productName, this.productLine, this.productScale, this.productVendor, this.quantityInStock, this.buyPrice);
     }
 }

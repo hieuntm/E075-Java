@@ -33,4 +33,21 @@ public class InputUtils {
         } while (!flag);
         return n;
     }
+
+    public static double inputDouble(String message) {
+        double n = -1;
+        boolean flag;
+        do {
+            try {
+                Scanner sc = new Scanner(System.in);
+                System.out.println(message);
+                n = sc.nextDouble();
+
+                flag = true;
+            } catch (InputMismatchException ex) {
+                flag = false;
+            }
+        } while (!flag);
+        return n;
+    }
 }

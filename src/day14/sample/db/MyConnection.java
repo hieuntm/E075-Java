@@ -2,6 +2,7 @@ package day14.sample.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MyConnection {
@@ -29,7 +30,7 @@ public class MyConnection {
 
     public MyConnection() {
         // Kết tới local database
-        this.ip = "localhost"; // -- 127.0.0.1
+        this.ip = "127.0.0.1"; // -- 127.0.0.1
         this.port = "3306";
         this.database = "classicmodels";
         this.username = "root";
@@ -39,7 +40,7 @@ public class MyConnection {
         // Mỗi khi mà dùng new MyConnection -> thuộc tính là mặc định
     }
 
-    public MyConnection(String url, String ip, String port, String database, String username, String password) {
+    public MyConnection(String ip, String port, String database, String username, String password) {
         this.ip = ip; // Code theo trình tự từ trên xuống dưới
         this.port = port;
         this.database = database;
@@ -65,5 +66,15 @@ public class MyConnection {
             System.err.println("Error while connecting to database");
         }
         return connection;
+    }
+
+    public void closeResultSet(ResultSet resultSet, String functionName) {
+        try {
+            if (resultSet != null) {
+                resultSet.close();
+            }
+        } catch (SQLException ex) {
+            System.out.println(functionName + ": " + ex.getMessage());
+        }
     }
 }

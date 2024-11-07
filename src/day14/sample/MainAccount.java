@@ -3,39 +3,32 @@ package day14.sample;
 
 import day13.sample.utils.InputUtils;
 import day14.sample.service.AccountService;
+import day14.sample.service.ProductService;
+
+import static day14.sample.utils.MenuUtils.accountMenu;
 
 public class MainAccount {
 
     public static void main(String[] args) {
         AccountService accountService = new AccountService();
-        int chon;
-        do {
-            menu();
-            chon = InputUtils.inputDigit(1, 3, "Xin bạn chọn: ");
-            switch (chon) {
-                case 1:
-                    // Đăng ký account
-                    System.out.println("Đăng ký account");
-                    String accountName = InputUtils.inputString("Xin mời nhập account:");
-                    String password = InputUtils.inputString("Xin mời nhập password:");
-                    String rePassword = InputUtils.inputString("Xin mời nhập lại password:");
-                    if (!password.equals(rePassword)) {
-                        System.out.println("Password không trùng khớp");
-                        break;
-                    }
-                    accountService.insertAccount(accountName, password);
-                    break;
-                case 2:
-                    break;
-                default:
-                    System.out.println("---------Thoát chương trình--------");
-            }
-        } while (chon != 4);
+        ProductService productService = new ProductService();
+
+        // By Pass Login - Kiểm thử, skip cái phần login
+//        boolean isLogged = accountService.accountFunction();
+        boolean isLogged = true;
+        System.out.println("isLogged: " + isLogged);
+
+        if(isLogged){
+            productService.productFunction();
+        }
+
+
+//        if (isLogged) {
+//            ProductService productService = new ProductService();
+//            productService.displayAllProduct();
+//        }
+
     }
 
-    public static void menu() {
-        System.out.println("1. Đăng ký");
-        System.out.println("2. Đăng nhập");
-        System.out.println("3. Thoát");
-    }
+
 }
