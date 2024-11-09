@@ -11,14 +11,17 @@ public class UserMenuUitls {
         System.out.println("3. Thoát");
     }
 
-    public static final int LIMIT_MENU_USER_PRODUCT = 4;
+    public static final int LIMIT_MENU_USER_PRODUCT = 7;
 
     // nằm ở product service
     public static void productUserMenu() {
         System.out.println("1. Hiển thị danh sách sản phẩm");
         System.out.println("2. Tìm kiếm sản phẩm theo ID");
         System.out.println("3. Thêm sản phẩm vào giỏ hàng"); // ->ngoài lề, liên quan đến cả order
-        System.out.println("4. Trở về");
+        System.out.println("4. Xoá sản phẩm khỏi giỏ hàng");
+        System.out.println("5. Đặt hàng");
+        System.out.println("6. Xem giỏ hàng hiện tại" );
+        System.out.println("7. Trở về");
     }
 
     // account_user_menu

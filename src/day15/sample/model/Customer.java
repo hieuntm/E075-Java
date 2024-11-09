@@ -1,5 +1,7 @@
 package day15.sample.model;
 
+import day15.sample.model.cart.Cart;
+
 public class Customer {
     private int customerNumber;
     private String customerName;
@@ -14,12 +16,13 @@ public class Customer {
     private String country;
     private Integer salesRepEmployeeNumber;
     private double creditLimit;
+    private Cart cart = new Cart();
 
     public Customer(int customerNumber) {
         this.customerNumber = customerNumber;
     }
 
-    public Customer(){
+    public Customer() {
     }
 
     public Customer(int customerNumber, String customerName, String contactLastName, String contactFirstName, String phone, String addressLine1, String addressLine2, String city, String state, String postalCode, String country, Integer salesRepEmployeeNumber, double creditLimit) {
@@ -140,5 +143,9 @@ public class Customer {
 
     public void setCreditLimit(double creditLimit) {
         this.creditLimit = creditLimit;
+    }
+
+    public Cart getCart() {
+        return cart;
     }
 }

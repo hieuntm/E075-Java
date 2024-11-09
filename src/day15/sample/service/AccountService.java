@@ -18,7 +18,7 @@ import static day15.sample.utils.menu.UserMenuUitls.accountUserMenu;
 
 public class AccountService {
 
-
+    private final CustomerService customerService = new CustomerService();
     private final MyConnection myConnection;
 
     public AccountService() {
@@ -171,7 +171,6 @@ public class AccountService {
                     System.out.println("Id account mới: " + rs.getInt(1));
                     // account id của table account
                     // mình lấy id này, mình insert vào bảng customer
-                    CustomerService customerService = new CustomerService();
                     customerService.insertNewCustomer(rs.getInt(1));
                 }
             }

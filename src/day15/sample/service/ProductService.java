@@ -2,6 +2,7 @@ package day15.sample.service;
 
 import day15.sample.db.MyConnection;
 import day15.sample.model.Account;
+import day15.sample.model.Customer;
 import day15.sample.model.Product;
 import day15.sample.utils.InputUtils;
 
@@ -19,6 +20,7 @@ import static day15.sample.utils.menu.UserMenuUitls.productUserMenu;
 public class ProductService {
     private final MyConnection myConnection;
 
+    // lấy cart
     // Constructor mỗi khi khởi tạo 1 object
     // Tạo myConnection
     // MyConnection -> có function để kết nối tới database
@@ -26,16 +28,16 @@ public class ProductService {
         myConnection = new MyConnection();
     }
 
-    public void productFunction(Account account) {
+    public void productFunction(Account account, Customer customer) {
         String role = account.getRole();
         if (role.equalsIgnoreCase("admin")) {
             adminFunction();
         } else {
-            userFunction();
+            userFunction(customer);
         }
     }
 
-    private void userFunction() {
+    private void userFunction(Customer customer) {
         int chon;
         do {
             productUserMenu();
@@ -57,6 +59,37 @@ public class ProductService {
                     break;
                 case 3:
                     // Thêm vào giỏ hàng
+                    // Nhập productCode + quantity
+                    String addToCartProductCode = InputUtils.inputString("Xin mời nhập id sản phẩm cần tìm:");
+                    Product foundaddToCartProductCode = getProductById(addToCartProductCode);
+                    if (foundaddToCartProductCode == null) {
+                        System.out.println("Không tìm thấy sản phẩm để thêm vào giỏ");
+                        break;
+                    }
+                    int quantity = InputUtils.inputDigit(1, 1_000, "Nhập số lượng: ");
+                    customer.getCart().addProduct(addToCartProductCode, quantity);
+                    break;
+                case 4:
+                    // Xoá sản phẩm ra khỏi giỏ hàng
+                    String removeToCartProductCode = InputUtils.inputString("Xin mời nhập id sản phẩm cần tìm:");
+                    Product foundRemoveToCartProductCode = getProductById(removeToCartProductCode);
+                    if (foundRemoveToCartProductCode == null) {
+                        System.out.println("Không tìm thấy sản phẩm để thêm vào giỏ");
+                        break;
+                    }
+                    //customer.getCart() -> cart (object cart)
+                    customer.getCart().removeProduct(removeToCartProductCode);
+                    break;
+                case 5:
+                    // đặt hàng
+                    // Insert vào database
+                    // khi giỏ hàng được insert vào database thì xoá cart đi
+                    order(customer);
+                    customer.getCart().clearCart();
+                    break;
+                case 6:
+                    // xem giỏ hàng
+                    customer.getCart().displayCart();
                     break;
                 default:
                     System.out.println("-- Quay lại");
@@ -118,6 +151,16 @@ public class ProductService {
                     break;
             }
         } while (chon != LIMIT_MENU_ADMIN_PRODUCT);
+    }
+
+
+    private void order(Customer customer) {
+        //customer chứa customerNumber  = account.id
+        // customer chứa cart = snapshot cart hiện tại
+
+        // insert vào orders
+        OrderService orderService = new OrderService();
+        orderService.insertOrder(customer);
     }
 
     // nhập mới -> tạo mới
