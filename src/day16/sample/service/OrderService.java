@@ -29,10 +29,17 @@ public class OrderService {
         String role = account.getRole();
         if (role.equalsIgnoreCase("admin")) {
 //            adminFunction();
-            // Tạo cho 1 admin,
+            // Tạo menu cho admin,
             // 1. Xem tất cả order của người dùng
             // 2. Xem chi tiết order
             // 3. Chuyển trạng thái order từ Ordered -> Shipped
+
+            // Để test được data, thêm 1 user
+            // rồi đặt hàng, nhiều đơn hàng,
+
+            // tạo user khác, đặt đơn hàng tiếp
+            // tạo 1 user khác, vào db chuyển role thành admin
+            // test.
         } else {
             userFunction(customer);
         }
